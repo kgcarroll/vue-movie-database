@@ -1,0 +1,29 @@
+$breakpoints: (
+    'sm': ( min-width: 375px ),
+    'tablet': ( min-width: 768px ),
+    'desktop': ( min-width: 1024px ),
+    'desktop_med': ( min-width: 1366px ),
+    'desktop_lrg': ( min-width: 1680px )
+) !default;
+
+@mixin device($breakpoint) {
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $breakpoint) {
+        // Prints a media query based on the value
+        @media #{inspect(map-get($breakpoints, $breakpoint))} {
+        @content;
+        }
+    }
+
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+            + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+}
+
+// For fonts - enter value as px, will be converted to rem.
+@mixin font($sizeValue: 26) {
+    font-size: ($sizeValue) + px;
+    font-size: ($sizeValue / 10) + rem;
+}

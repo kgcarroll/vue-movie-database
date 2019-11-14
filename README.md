@@ -1,4 +1,4 @@
-# vue-skeleton
+# imedia-dev-test
 
 ## Project setup
 ```
